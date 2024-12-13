@@ -14,4 +14,5 @@ public class Transportation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transportationId;
     private String name;
+    private String libelle;
 }
