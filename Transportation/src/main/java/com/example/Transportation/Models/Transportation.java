@@ -15,4 +15,6 @@ public class Transportation {
     private Long transportationId;
     private String name;
     private String libelle;
+    private String libelle1;
+    private String libelle2;
 }
