@@ -1,0 +1,41 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+
+
+server:
+  port: 8222
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+      roules:
+        - id: client
+          uri: http://localhost:8090
+          predicates:
+            -path=/api/v1/client/**
+
+        - id: transportation
+          uri: http://localhost:8070
+          predicates:
+            -path=/api/v1/transportation/**
+  application:
+    name: gateway
+  config:
+    import: optional:configserver:http://localhost:8888
+  datasource:
+    url: jdbc:mysql://localhost:3306/transportation?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&cachePrepStmts=true&useServerPrepStmts=true&rewriteBatchedStatements=true
+    username: root
+    password: Mohamed2019$
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
